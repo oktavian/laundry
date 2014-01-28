@@ -1,0 +1,130 @@
+create table cek_in (
+id_cek varchar2 (5) not null,
+nama_cek varchar2(20) not null,
+no_telp varchar2(15) not null,
+alamat varchar2(30),
+constraint pk_cekin primary key(id_cek));
+
+create table pegawai(
+id_pegawai varchar2(7) not null,
+nama_pegawai varchar2(20) not null,
+alamat varchar2(30) not null,
+password varchar2 (20) not null,
+no_telp varchar2(15) not null,
+constraint pk_pegawai primary key(id_pegawai));
+
+create table laundry (
+id_laundry varchar2(5) not null,
+id_pegawai varchar2(5) not null,
+id_cek varchar2 (5) not null,
+tgl date,
+total_bayar number,
+status varchar2(20),
+constraint pk_laundry primary key(id_laundry),
+constraint fk_laundry foreign key (id_pegawai) references pegawai(id_pegawai),
+constraint fk_laundry2 foreign key (id_cek) references cek_in(id_cek));
+
+create table jenis_barang (
+id_barang varchar2(5) not null,
+nama_barang varchar2(30) not null,
+harga_persatuan number,
+constraint pk_jenis_barang primary key(id_barang));
+
+create table detail_laundry (
+id_detail varchar2(20) not null,
+id_laundry varchar2(5) not null,
+id_barang varchar2(5) not null,
+jumlah number,
+total_laundry number,
+constraint pk_detail_laundry primary key(id_laundry, id_barang),
+constraint fk_detail_laundry foreign key(id_barang) references jenis_barang (id_barang));
+
+create table billing (
+no_billing varchar2(5) not null,
+id_laundry varchar(5) not null,
+tgl_bayar date,
+total number,
+constraint pk_billing primary key(no_billing),
+constraint fk_billing foreign key(id_laundry) references laundry(id_laundry));
+==================================================
+insert into cek_in values('C0001','Andi Hermawan','085111222333','Bandung');
+insert into cek_in values('C0002','Reza Rizki','081333928904','Semarang');
+insert into cek_in values('C0003','Sony Kurniawan','082893874898','Lombok');
+insert into cek_in values('C0004','Ika Daniati','089283984950','Rembang');
+insert into cek_in values('C0005','Khoirul Humam A','087828930291','Pati');
+insert into cek_in values('C0006','Deri Setyawan','083289330291','Bekasi');
+insert into cek_in values('C0007','Eri Fatimah','083289454291','Solo');
+insert into cek_in values('C0008','Muhammad Heryanto','08328989231','Klaten');
+insert into cek_in values('C0009','Aisya Rahma Zanuary','083289355534','Kudus');
+insert into cek_in values('C0010','Dadang Sukmara','0833339343','Banten');
+insert into cek_in values('C0011','Asep kurnia','083289393534','Rembang');
+insert into cek_in values('C0012','Abdurrahman Gurning','083289390933','Pati');
+insert into cek_in values('C0013','Atep Setya','083289390464','Sidoarjo');
+insert into cek_in values('C0014','Jajang Kusnanda','083289390226','Banjarmasin');
+insert into cek_in values('C0015','Zainal Arifin','083289390224','Samarinda');
+insert into cek_in values('C0016','Bambang Pamungkas','083289390922','NTB');
+insert into cek_in values('C0017','Dedi Rianto','083289390232','NTT');
+insert into cek_in values('C0018','Joko Purnomo','083289390232','Yogyakarta');
+insert into cek_in values('C0019','Jendry Purwanto','083289390332','Palembang');
+insert into cek_in values('C0020','Budi Sudarsono','083289390222','Jepara');
+insert into cek_in values('C0021','Zainal Ikhwan','083289390343','Kuningan');
+insert into cek_in values('C0022','Irfan Maulana','083289390434','Surabaya');
+insert into cek_in values('C0023','Banu Aji','083289390956','Semarang');
+insert into cek_in values('C0024','Sulis Setyawan','083289390454','Wonosobo');
+insert into cek_in values('C0025','Joko Diyono','083289394644','Cilacap');
+insert into cek_in values('C0026','Wasis Susilo','083289390768','Kebumen');
+insert into cek_in values('C0027','Wawan Indrawan','083289396786','Banjarnegara');
+insert into cek_in values('C0028','Muhammad Najib','083289396678','Lombok');
+insert into cek_in values('C0029','Soleh Pati','083289396778','Ambon');
+insert into cek_in values('C0030','Rijal Fikri','083289397768','Medan');
+insert into cek_in values('C0031','Hanung Ahmad','083289397888','Makassar');
+insert into cek_in values('C0032','Riski Faisal','083289398890','Purwodadi');
+insert into cek_in values('C0033','Adiyat Mubarak','083289398789','Balikpapan');
+insert into cek_in values('C0034','Joko Susanto','083289390790','Tangerang');
+insert into cek_in values('C0035','Taufik Hidayat','083289390878','Bekasi');
+insert into cek_in values('C0036','Anas Setyawan','083289397878','Banten');
+insert into cek_in values('C0037','Irsyad Maulana','083289390878','Pati');
+insert into cek_in values('C0038','Gunawan Dwi','083289390232','Wamena');
+insert into cek_in values('C0039','Achmad Nizar','083289392324','Kediri');
+insert into cek_in values('C0040','Beryl Cahyadi','083289394546','Solo');
+insert into cek_in values('C0041','Bayu Wicaksono','083289393434','Bandung');
+insert into cek_in values('C0042','Agam Sakerah','083289395343','Bandung');
+insert into cek_in values('C0043','Wendy Ahmad','083289394643','Jakarta');
+insert into cek_in values('C0044','Siti Saadah','083289395346','Pekanbaru');
+insert into cek_in values('C0045','Rina Hermaine','083289395753','Riau');
+insert into cek_in values('C0046','Pajol Sob','083289393578','Padang');
+insert into cek_in values('C0047','Adam Juniarto','083289393232','Padang');
+insert into cek_in values('C0048','Immanuel Sitorus','083289393235','Riau');
+insert into cek_in values('C0049','Rizal Azhar','083289392352','Jakarta');
+insert into cek_in values('C0050','Andika Siahaan','083289394457','Bali');
+insert into cek_in values('C0051','Tedy Gumelar','08328939452','Medan');
+insert into cek_in values('C0052','Muhammad Irfan','083289393467','Jakarta');
+insert into cek_in values('C0053','Wiro Atmaja','08328939423','Bandung');
+insert into cek_in values('C0054','Beny Van Benben','083289393332','Bandung');
+insert into cek_in values('C0055','Ajeng Salindri','083289393433','Pati');
+insert into cek_in values('C0056','ikwhwan Syaifani','083289393433','Pati');
+insert into cek_in values('C0057','David Sanjaya','083289353991','Kudus');
+insert into cek_in values('C0058','Antony Sinaga','083289343991','Bandung');
+insert into cek_in values('C0059','Wahyu liono','083289555991','Bali');
+insert into cek_in values('C0060','Bastian Adi','08314440991','Lombok');
+
+
+==================================================
+insert into pegawai values ('P0001','Fery','Jakarta','F6','085889765908');
+insert into pegawai values ('P0003','Arga','Medan','A1','081872908767');
+insert into pegawai values ('P0004','Hendra','Jakarta','H7','087993885904');
+insert into pegawai values ('P0005','Doni','Jakarta','D4','087665789887');
+insert into pegawai values ('P0002','humam','pga','humam','08588973342');
+==================================================
+insert into jenis_barang values ('J0001','baju',8000);
+insert into jenis_barang values ('J0002','celana panjang',10000);
+insert into jenis_barang values ('J0003','jas',12000);
+insert into jenis_barang values ('J0004','jaket',14000);
+insert into jenis_barang values ('J0005','daleman',5000);
+insert into jenis_barang values ('J0006','celana pendek',6000);
+insert into jenis_barang values ('J0007','piyama',8000);
+insert into jenis_barang values ('J0008','kaos',6000);
+insert into jenis_barang values ('J0009','kaos kaki',4000);
+insert into jenis_barang values ('J0010','selendang',7000);
+insert into jenis_barang values ('J0011','mukena',7000);
+======================================

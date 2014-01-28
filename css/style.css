@@ -1,0 +1,33 @@
+/**** login ***/
+#login_masuk form {
+    margin: 10% auto;
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+/*** login ***/
+
+
+#menu {
+        width: 40%;
+        margin: 2% auto;
+        padding: 1%;
+        list-style: none;
+}
+
+#menu li {
+        float:left;
+        margin-left: 10%;
+        background-color: grey;
+        padding: 10px;
+}
+
+#menu li a {
+        display: block;
+        color: white;
+}
+
+.clear {
+        clear: both;
+}

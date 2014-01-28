@@ -1,0 +1,85 @@
+create sequence ID_LAUNDRY_SEQ
+start with 1
+increment by 1
+maxvalue 99999999999999
+minvalue 1
+nocache
+nocycle
+noorder
+/  
+
+
+create sequence seq_id_barang
+start with 1
+increment by 1
+maxvalue 99999999999999
+minvalue 1
+nocache
+nocycle
+noorder
+/  
+
+create sequence id_pegawai_seq
+start with 1
+increment by 1
+maxvalue 99999999999999
+minvalue 1
+nocache
+nocycle
+noorder
+/  
+
+create or replace function func_id_pegawai return varchar2 is
+	id varchar2(7);
+begin
+	id:= 'P000'||id_pegawai_seq.nextval;
+	return id; 
+end;
+/
+
+create or replace procedure proc_input_pegawai(vnama_pegawai varchar2, valamat varchar2, password varchar2, vno_telp varchar2) is
+begin
+	insert into pegawai(nama_pegawai, alamat, password, no_telp) values( vnama_pegawai, valamat,password, vno_telp);
+end;
+/
+
+execute proc_input_pegawai('Agus','Banjarnegara','Ag','0983265222');
+=====================================================================
+//Function total bayar
+
+create or replace function hitung_bayar (idlaundry varchar)
+	return number
+	is
+	bayar number;
+	begin	
+		select SUM(jumlah * harga_persatuan) into bayar from 			detail_laundry a
+		join jenis_barang b
+		on a.id_barang=b.id_barang
+		where id_laundry=idlaundry;
+		return bayar;
+	end;
+	/
+
+	 select hitung_bayar('L-006') from dual;
+=====================================================================
+
+//Procedure tambah & hapus
+
+create or replace procedure tambah (vid_pegawai varchar2, vid_cek varchar2, vtgl date)
+	is
+begin
+	insert into laundry(id_pegawai, id_cek, tgl) values (vid_pegawai, vid_cek, vtgl);
+	end;
+	/
+	
+	exec tambah('','','');
+	
+create or replace procedure hapus (vid_laundry varchar2)
+	is
+begin
+	delete laundry where id_laundry=vid_laundry;
+	end;
+	/
+	
+	exec hapus('');
+====================================================================
